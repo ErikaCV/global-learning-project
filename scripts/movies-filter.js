@@ -1,8 +1,8 @@
 // Cuando el DOM esté completamente cargado, se ejecutará esta función.
 document.addEventListener("DOMContentLoaded", async () => {
   // Se realizan dos solicitudes de fetch para obtener datos de usuarios y películas desde archivos JSON locales y luego Convierte las respuestas obtenidas en objetos JSON.
-  const resUsers = await fetch('../users.json');
-  const resMovies = await fetch('../movies.json');
+  const resUsers = await fetch("../users.json");
+  const resMovies = await fetch("../movies.json");
 
   const users = await resUsers.json();
   const movies = await resMovies.json();
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // se añade un evento "input" al campo userId que sólo permite el ingreso de números.
   document.getElementById("userId").addEventListener("input", (event) => {
     event.target.value = event.target.value.replace(/[^0-9]/g, "");
-  })
+  });
 });
 
 // Seleccionamos el contenedor donde se mostrarán los resultados.
@@ -35,14 +35,15 @@ function renderMovies(movies) {
   moviesContainer.innerHTML = ""; // Limpia el contenedor de resultados.
   let fragment = document.createDocumentFragment();
 
-   // Si no hay películas que mostrar, agrega un mensaje al fragmento.
+  // Si no hay películas que mostrar, agrega un mensaje al fragmento.
   if (movies.length === 0) {
     const message = document.createElement("p");
-    message.textContent = "No se han localizado películas que correspondan a los filtros seleccionados.";
+    message.textContent =
+      "No se han localizado películas que correspondan a los filtros seleccionados.";
     fragment.appendChild(message);
   } else {
-    const ul = document.createElement("ul");// Crea una lista desordenada.
-    
+    const ul = document.createElement("ul"); // Crea una lista desordenada.
+
     // Para cada película, creamos un elemento li, donde se añaden detalles de la película y detalles del usuario.
     movies.forEach((movie) => {
       const li = document.createElement("li");
@@ -70,16 +71,18 @@ function renderMovies(movies) {
       ul.appendChild(li);
     });
 
-    fragment.appendChild(ul);// se añade la lista al fragmento.
+    fragment.appendChild(ul); // se añade la lista al fragmento.
   }
   moviesContainer.appendChild(fragment); // Añadimos el fragmento al contenedor de resultados.
+  moviesContainer.scrollIntoView({ behavior: "smooth" });
 }
 
 // Función para filtrar las caracteristicas deseadas de las películas.
 function filterMovies({ users, movies, userId, fromDate, toDate, rate }) {
-  
-  // si userId es verdadero entonces se filtran los usuarios. Si userId no es verdadero se usa el array de usuarios completo 
-  let filteredUser = userId ? users.filter((user) => user.id === parseInt(userId)) : users;
+  // si userId es verdadero entonces se filtran los usuarios. Si userId no es verdadero se usa el array de usuarios completo
+  let filteredUser = userId
+    ? users.filter((user) => user.id === parseInt(userId))
+    : users;
   // Filtramos las películas por userId (si se proporciona), fecha y valoración.
   const filteredMovies = movies.filter((movie) => {
     return (
@@ -107,6 +110,3 @@ function filterMovies({ users, movies, userId, fromDate, toDate, rate }) {
   // Renderiza las películas con detalles de usuario en el DOM.
   renderMovies(detailedMovies);
 }
-
-
-
