@@ -1,0 +1,171 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+body {
+    color: #e6ecef;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../assets/images/img.avif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .7em 0;
+}
+
+
+.logo {
+    width: 350px;
+    cursor: pointer;
+    margin-right: 20em;
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.container div {
+    display: flex;
+    flex-direction: column;
+    margin-right: .625em;
+}
+
+
+.container label {
+    display: none;
+}
+
+
+.container input {
+    padding: .5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+
+.login-btn {
+    border: 0;
+    outline: 0;
+    background: #1223d6;
+    color: #fff;
+    padding: .6em 2em;
+    font-size: .85rem;
+    border-radius: 4px;
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+
+.section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-top: 5em;
+}
+
+
+h1 {
+    font-size: 4rem;
+    line-height: 70px;
+    font-weight: bold;
+    max-width: 650px;
+    animation: zoomFadeIn 2s ease-out;
+}
+
+
+@keyframes zoomFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+h3 {
+    font-weight: 400;
+    margin-bottom: 1.25em;
+}
+
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: .5em;
+    border: 1.7px solid #1223d6;
+    border-radius: 5px;
+    margin-bottom: .063em;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .logo {
+        width: 220px;
+        margin-left: 7em;
+    }
+
+    .section {
+        position: unset;
+        transform: none;
+        padding-top: 9.375em;
+        padding-bottom: 10em;
+    }
+
+    h1 {
+        font-size: 1.875rem;
+        animation: zoomFadeIn 2s ease-out;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: stretch;
+        min-height: 100vh;
+    }
+
+    .container div {
+        margin-bottom: .625em;
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 70%;
+    }
+
+    .container input {
+        padding: .9em;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 50%;
+        margin-left: 1.3em;
+    }
+}
